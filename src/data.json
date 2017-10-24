@@ -1,0 +1,115 @@
+{
+  "messages": {
+
+    "1": {
+      "id": "1",
+      "chatId": "1",
+      "userId": "1",
+      "messageText": "Заявку нужно подать именно 15.12.2017",
+      "createDateTime": "17.10.2017 16:11:54"
+    },
+    "2": {
+      "id": "2",
+      "chatId": "1",
+      "userId": "3",
+      "messageText": "Здравствуйте, Михаил. Ваши документы подадим точно 15.12.2017",
+      "createDateTime": "17.10.2017 16:11:55"
+    },
+
+    "3": {
+      "id": "3",
+      "chatId": "1",
+      "userId": "3",
+      "messageText": "Вероника, запиши себе на 15.12.2017",
+      "createDateTime": "17.10.2017 16:11:56"
+    },
+
+    "4": {
+      "id": "4",
+      "chatId": "1",
+      "userId": "4",
+      "messageText": "Я 15.12.2017 не смогу буду в отпуске.",
+      "createDateTime": "17.10.2017 16:11:57"
+    },
+
+    "5": {
+      "id": "5",
+      "chatId": "1",
+      "userId": "3",
+      "messageText": "Хорошо тогда назначу задачу на Сашу. И добавлю его в чат.",
+      "createDateTime": "17.10.2017 16:11:58"
+    },
+    "6": {
+      "id": "7",
+      "chatId": "1",
+      "userId": "1",
+      "messageText": "Совсем забыл, сколько это будет стоить?",
+      "createDateTime": "17.10.2017 16:11:58"
+    },
+    "7": {
+      "id": "7",
+      "chatId": "1",
+      "userId": "3",
+      "messageText": "Дополнительной платы за смену даты подачи заявки не берется. Стоимость останется прежней 5000 руб. ?",
+      "createDateTime": "17.10.2017 16:11:58"
+    }
+  },
+
+  "users": {
+
+    "1": {
+      "id": "1",
+      "name": "Олег Панюков",
+      "photo": "http://placehold.it/50/55C1E7/fff&text=OP"
+    },
+
+    "2": {
+      "id": "2",
+      "name": "Руслан Быконя",
+      "photo": "http://placehold.it/50/55C1E7/fff&text=RB"
+    },
+
+    "3": {
+      "id": "3",
+      "name": "Медведева Елена",
+      "photo": "http://placehold.it/50/FA6F57/fff&text=МЕ"
+    },
+
+    "4": {
+      "id": "4",
+      "name": "Шатрова Вероника",
+      "photo": "http://placehold.it/50/55C1E7/fff&text=SV"
+    },
+
+    "5": {
+      "id": "5",
+      "name": "Бурьян Дмитрий",
+      "photo": "http://placehold.it/50/55C1E7/fff&text=BD"
+    },
+
+    "6": {
+      "id": "6",
+      "name": "Александр Косоруков",
+      "photo": "http://placehold.it/50/55C1E7/fff&text=AK"
+    }
+
+  },
+
+  "chats": {
+    "1": {
+      "id": "1",
+      "name": "Чат по заявке № 32555",
+      "createDateTime": "17.10.2017 16:11:58:382"
+    },
+    "2": {
+      "id": "2",
+      "name": "Чат по заявке № 32777",
+      "createDateTime": "18.10.2017 16:11:58:382"
+    }
+  },
+
+  "currentChatId": "1",
+
+  "currentUserId": "3"
+
+}
