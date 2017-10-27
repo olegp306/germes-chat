@@ -10,6 +10,7 @@ class App extends Component {
     //console.log(data);
     return (
       <div className="App">
+        <p>тест</p>
         <Chat data={data}/>
       </div>
     );
