@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from '../../react/react.js';
 
 import BigChatDescription from './BigChatDescription.jsx';
 import SmallChatDescription from './SmallChatDescription.jsx';
@@ -19,7 +19,7 @@ class Chat extends React.Component {
           <div className="row">
             <div className="col-md-5">
               <div className="panel panel-primary">
-                <BigChatDescription data={data.chats[data.currentChatId]}/>
+                <BigChatDescription data={data.chats[data.currentChatId] }/>
                 <MessagesList messages={data.messages} users = {data.users} currentUserId={data.currentUserId}/>
                 <NewMessageBox />
               </div>

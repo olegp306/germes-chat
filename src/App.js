@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+
 import data from './data.json';
 
 import Chat from './components/Chat.jsx';
