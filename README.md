@@ -2,7 +2,8 @@
 он также доступен для просмора на gh pages по адресу https://olegp306.github.io/germes-chat/
 
 При создании билда для Клариса найдено следуюшее решение
-в коневой компонент
+в корневом компоненте сделать код следующего вида.
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
