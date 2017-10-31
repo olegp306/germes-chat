@@ -12,25 +12,25 @@ class BigChatDescription extends Component {
               <span className="glyphicon glyphicon-chevron-down"></span>
             </button>
             <ul className="dropdown-menu slidedown">
-              <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-refresh">
-                </span>Refresh</a>
+              <li><a href="#"><span className="glyphicon glyphicon-refresh">
+              </span>Добавить контакты</a>
               </li>
-              <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-ok-sign">
-                </span>Available</a>
-              </li>
-              <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-remove">
-                </span>Busy</a>
-              </li>
-              <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-time">
-                </span>Away</a>
-              </li>
-              <li className="divider"></li>
-              <li>
-                <a href="http://www.jquery2dotnet.com">
-                  <span className="glyphicon glyphicon-off"></span>
-                  Sign Out
-                </a>
-              </li>
+              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-ok-sign">
+              //   </span>Available</a>
+              // </li>
+              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-remove">
+              //   </span>Busy</a>
+              // </li>
+              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-time">
+              //   </span>Away</a>
+              // </li>
+              // <li className="divider"></li>
+              // <li>
+              //   <a href="http://www.jquery2dotnet.com">
+              //     <span className="glyphicon glyphicon-off"></span>
+              //     Sign Out
+              //   </a>
+              // </li>
             </ul>
           </div>
         </div>
