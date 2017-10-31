@@ -15,16 +15,10 @@ class Chat extends React.Component {
     let data=this.props.data;
     return (
       <div className="bootstrap">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-5">
-              <div className="panel panel-primary">
-                <BigChatDescription data={data.chats[data.currentChatId]}/>
-                <MessagesList messages={data.messages} users = {data.users} currentUserId={data.currentUserId}/>
-                <NewMessageBox />
-              </div>
-            </div>
-          </div>
+        <div className="panel panel-primary">
+          <BigChatDescription data={data.chats[data.currentChatId]}/>
+          <MessagesList messages={data.messages} users = {data.users} currentUserId={data.currentUserId}/>
+          <NewMessageBox />
         </div>
       </div>
   )
