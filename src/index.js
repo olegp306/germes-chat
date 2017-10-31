@@ -2,8 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+window.GermesChat=App;
+console.log("Запуск GermesChat index.js");
+//import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('germes-chat'));
+// Перед тем как Build для Клариса нужно закоментировать строчку ниже а в Кларисе ReactDOM.render(React.createElement(window.GermesChat), document.getElementById('germes-chat'))
+//Иначе компонент попытаеться разу где-то отрисоваться
 
-registerServiceWorker();
+//ReactDOM.render(<App />, document.getElementById('germes-chat'));
+
+//registerServiceWorker();
