@@ -1,3 +1,6 @@
+Проект сделан по ниже следующему описанию (ссылка не репозитройи http://andrewhfarmer.com/starter-project/)
+он также доступен для просмора на gh pages по адресу
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
