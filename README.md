@@ -1,5 +1,5 @@
 Проект сделан по ниже следующему описанию (ссылка не репозитройи http://andrewhfarmer.com/starter-project/)
-он также доступен для просмора на gh pages по адресу
+он также доступен для просмора на gh pages по адресу https://olegp306.github.io/germes-chat/
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
