@@ -1,6 +1,29 @@
 Проект сделан по ниже следующему описанию (ссылка не репозитройи http://andrewhfarmer.com/starter-project/)
 он также доступен для просмора на gh pages по адресу https://olegp306.github.io/germes-chat/
 
+При создании билда для Клариса найдено следуюшее решение
+в коневой компонент
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './App';
+
+window.GermesChat=App;
+
+console.log("Запуск GermesChat index.js");
+//import registerServiceWorker from './registerServiceWorker';
+
+// Перед тем как Build для Клариса нужно закоментировать строчку ниже а в Кларисе 
+//Иначе компонент попытаеться разу где-то отрисоваться
+
+//ReactDOM.render(<App />, document.getElementById('germes-chat'));
+
+а в Кларисе для отрисовки использовать 
+ReactDOM.render(React.createElement(window.GermesChat), document.getElementById('germes-chat'))
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
