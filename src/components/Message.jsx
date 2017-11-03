@@ -5,8 +5,8 @@ class Message extends Component {
     let data=this.props.message;
     let isMyMessage=this.props.isMyMessage;
     let user=this.props.user;
-    console.log('Message');
-    console.log(user);
+    //console.log('Message');
+    //console.log(user);
     return (
       <div className="Message">
         <li className={ isMyMessage==true ? "right clearfix" : "left clearfix"}>
