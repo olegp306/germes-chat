@@ -1,144 +1,65 @@
 import React, { Component } from 'react';
 import data from './data.json';
-import axios from 'axios'
+import axios from 'axios';
+// Import global api settings
+import './global-api';
+
+import * as api from  './api/api.js';
 
 import Chat from './components/Chat.jsx';
 
+//import {testExternalParam} from  './index.js';
+
+//Надо получиь параметры из Клариса распарсить здесь и отдать всем
 
 class App extends Component {
   constructor(props) {
     console.log('constructor');
     super(props);
+
     this.state={};
 
     //this.state = {};
   }
   componentDidMount() {
-    let baseurl='http://localhost:85/germes/v1';
-    let requestId=this.props.params.requestId;
-    let userId=this.props.params.userId;
-    var chatData={};
-    var axiosChat = axios.create({baseURL: 'http://localhost:85/germes/v1'});
-    this.setState({test1:'beforegetTokenByUserId' });
+    console.log('App componentDidMount',this.props);
+    let userId=this.props.userId;
+    const activeUser = JSON.parse(localStorage.getItem('claris-vnext-global-user'));
 
-    var autorizeByUserId = function (userId){
-      return axiosChat.post(baseurl+'/authbyappkey/token', {
-        userid: userId,
-        appkey: "kdwcc83defm8o7bkdwcc83defm8o7b"
-        })
-      // .then(function (response) {
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
-    }
-
-    var getChatInfoByRequestId=function (requestId){
-      return  axiosChat.get(baseurl+'/chats/request/'+requestId)
-      // .then(function (response) {
-      //   console.log(' getChatInfoByRequestId',response);
-      // })
-      // .catch(function (error) {
-      //   console.log(' getChatInfoByRequestId',error);
-      // });
-    }
-
-    var getUsersByChatId=function (chatId) {
-      return axiosChat.get(baseurl+'/users/chatid/'+this.chatId)
-      // .then(function (response) {
-      //   console.log(' getCurrentChat',response);
-      // })
-      // .catch(function (error) {
-      //   console.log(' getCurrentChat',error);
-      // });
-    }
-
-    var getAllChatsByUserId= function (userId) {
-      return axiosChat.get(baseurl+'/chats/user/'+this.userId)
-      // .then(function (response) {
-      //   console.log(' getCurrentChat',response);
-      // })
-      // .catch(function (error) {
-      //   console.log(' getCurrentChat',error);
-      // });
-    }
-
-    var getAllUsersByChatId= function (chatId) {
-      return axiosChat.get(baseurl+'/users/chatid/'+chatId)
-      // .then(function (response) {
-      //   console.log(' getUsers',response);
-      // })
-      // .catch(function (error) {
-      //   console.log(' getUsers',error);
-      // });;
-    }
-
-    var getMessagesByChatId=function (chatId) {
-      return axiosChat.get(baseurl+'/messages/chatid/'+ chatId)
-      // .then(function (response) {
-      //   console.log(' getMessages',response);
-      // })
-      // .catch(function (error) {
-      //   console.log(' getMessages',error);
-      // });
-    }
-
-    var toAssociativeArrfunction =function (data){
-      let map = {};
-      //console.log('toAssociativeArr', data);
-      for (var i = 0, l = data.length; i < l; i++) {
-          map[data[i].id] = data[i];
+    if (activeUser!=null) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${activeUser.accessToken}`;
       }
-      //console.log(map);
-      return map;
-    }
+    else {
+      api.authenticateByUserId(this.props.chatparams.userId)
+      .then(
+        (response)=>{
+        //console.log(data);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
+        this.setState({isAutorized:true});
 
-    var getInitialData=function (){
-
-      autorizeByUserId(userId)
-      .then((response)=>{
-        axiosChat.defaults.headers.common['Authorization'] = 'Bearer '+response.data.accessToken;
-        //2768005082000
-        return getChatInfoByRequestId(requestId)
-      })
-      .then((response)=>{
-        chatData.currentChatInfo=response.data;
-        //console.log('chatData.currentChatId=response.data.Id:',response);
-      })
-      .then((response)=>{
-        axios.all([getMessagesByChatId(chatData.currentChatInfo.id), getAllUsersByChatId(chatData.currentChatInfo.id)])
-          .then(axios.spread(function (messages, users) {
-            chatData.messages=toAssociativeArr(messages.data);
-            chatData.users=toAssociativeArr(users.data);
-            //chatData.chats=
-            chatData.currentChatId=chatData.currentChatInfo.id;
-            chatData.currentUserId=userId;
-        }))
-        .then((response)=>{
-          this.setState({chat:chatData});
-          console.log(chatData);
-
-        })
-
-        console.log(chatData);
+        //todo записать в локал сторед
+      },
+      (error)=>{
+        console.log(error)
       });
-  }
-    getInitialData();
+    }
   }
 
   render() {
   console.log('render');
-  if(!this.state.alldata)
+  if(this.state.isAutorized==false || !this.state.isAutorized )
   {
-    return <p>Loading</p>
+    return <p>Autorization....</p>
   }
-    //console.log(data);
-    return (
+  if(this.state.isAutorized==true) {
+      return (
       <div className="App">
-        <Chat data={this.state.alldata}/>
+        <Chat chatId={this.props.chatparams.chatId} userId={this.props.chatparams.userId}/>
       </div>
     );
+  }
+    //console.log(data);
+
   }
 }
 
