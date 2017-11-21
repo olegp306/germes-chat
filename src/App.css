@@ -36,8 +36,15 @@
 
 .panel-body
 {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 250px;
+}
+
+textarea
+{
+  width: 70%; /* Ширина поля в процентах */
+/*     height: 2px; Высота поля в пикселах */
+    resize: none; /* Запрещаем изменять размер */
 }
 
 ::-webkit-scrollbar-track
