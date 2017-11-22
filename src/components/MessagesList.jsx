@@ -28,7 +28,10 @@ class MessagesList extends Component {
 
   scrollTolastMessage=()=>{
       var objDiv = document.getElementsByClassName('panel-body');
-      document.getElementsByClassName('panel-body')[0].scrollTop = document.getElementsByClassName('panel-body')[0].scrollHeight;
+      if(objDiv.length!=0)
+      {
+        objDiv[0].scrollTop =objDiv[0].scrollHeight;
+      }
     }
 
 
