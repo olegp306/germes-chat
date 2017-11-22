@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 
+//import {testExternalParam} from  '../index.js';
+
 class BigChatDescription extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state={};
+  }
+
+  componentDidMount() {
+      this.setState({chatInfo:this.props.chatInfo}) ;
+  }
+
   render() {
+
+    if(this.state.chatInfo==null || !this.state.chatInfo )
+    {
+      return <p>BigChatDescription Loading....</p>
+    }
     //console.log(this.props.data);
-    let chatInfo=this.props.data;
+    let chatInfo=this.state.chatInfo;
     return (
       <div className="panel-heading">
-        <span className="glyphicon glyphicon-comment"></span> {chatInfo.name}
-          <div className="btn-group pull-right">
+        <span className="glyphicon glyphicon-comment"></span> {chatInfo.name}  ({chatInfo.description})
+        <div className="btn-group pull-right">
             <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
               <span className="glyphicon glyphicon-chevron-down"></span>
             </button>
