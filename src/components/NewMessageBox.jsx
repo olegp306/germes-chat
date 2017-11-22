@@ -10,20 +10,26 @@ class NewMessageBox extends Component {
   //при инициализации 1 раз
    componentDidMount() {
      this.state={text:this.props.newMessageText};
-     //this.scrollTolastMessage();
    }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     this.setState({text:nextProps.newMessageText});
   }
 
   handMessageAdd=()=>{
     this.props.addMessageFn(this.state.text);
-    //console.log('handMessageAdd');
   };
 
+  handIsEnterKey=(event)=>{
+    console.log('handIsEnterKey');
+    if(event.keyCode==13){
+      console.log(event.keyCode);
+      this.handMessageAdd();
+    }
+  }
+
   handleTextChange=(event)=>{
+    console.log('handleTextChange');
     this.setState({text:event.target.value});
   }
 
@@ -38,9 +44,10 @@ class NewMessageBox extends Component {
             className="form-control input-sm"
             value={this.state.text}
             onChange={this.handleTextChange}
+            onKeyDown={this.handIsEnterKey}
           />
             <span className="input-group-btn">
-              <button className="btn btn-warning btn-sm" id="btn-chat" onClick={this.handMessageAdd}>
+              <button className="btn btn-warning btn-sm" id="btn-chat" onClick={this.handMessageAdd}  >
                 Отправить
               </button>
             </span>
