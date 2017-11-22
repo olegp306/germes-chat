@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 const CLIENT_ID = 'kdwcc83defm8o7bkdwcc83defm8o7b';
-const BASE_URL = 'http://localhost:85/germes/v1';
-
 
 function parseJSON(response) {
   return response.json();
@@ -22,7 +20,8 @@ export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  if(response.status == 404 || response.status == 401){
+
+  if(response.status == 401){
     return response;
   }
 
@@ -37,7 +36,6 @@ export function authenticateByUserId (userId){
     userid: userId,
     appkey: CLIENT_ID
     })
-
 }
 
 export function getChatInfoByChatId (chatId){
