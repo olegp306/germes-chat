@@ -73,11 +73,11 @@ class Chat extends React.Component {
     return (
       <div className="bootstrap">
         <div className="panel panel-primary">
-          d
           <ChatsList chats={this.state.chats} />
           <BigChatDescription chatInfo={this.state.chats[this.state.currentChatId]}/>
           <MessagesList currentChatId={this.state.currentChatId} currentUserId={this.props.userId} messages={this.state.messages} users={this.state.users}/>
           <NewMessageBox addMessageFn={this.addMessagge} newMessageText={this.state.newMessageText}/>
+
         </div>
       </div>
     )
