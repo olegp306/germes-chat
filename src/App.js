@@ -6,7 +6,7 @@ import './global-api';
 
 import * as api from  './api/api.js';
 
-import Chat from './components/Chat.jsx';
+import ChatApp from './components/ChatApp.jsx';
 
 //import {testExternalParam} from  './index.js';
 
@@ -54,7 +54,7 @@ class App extends Component {
   if(this.state.isAutorized==true) {
       return (
       <div className="App">
-        <Chat chatId={this.props.chatparams.chatId} userId={this.props.chatparams.userId}/>
+        <ChatApp chatId={this.props.chatparams.chatId} userId={this.props.chatparams.userId}/>
       </div>
     );
   }

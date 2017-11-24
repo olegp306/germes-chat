@@ -12,6 +12,9 @@ class BigChatDescription extends Component {
   componentDidMount() {
       this.setState({chatInfo:this.props.chatInfo}) ;
   }
+  componentWillReceiveProps(nextProps) {
+      this.setState({chatInfo:nextProps.chatInfo}) ;
+  }
 
   render() {
 
@@ -22,35 +25,7 @@ class BigChatDescription extends Component {
     //console.log(this.props.data);
     let chatInfo=this.state.chatInfo;
     return (
-      <div className="panel-heading">
-        <span className="glyphicon glyphicon-comment"></span> {chatInfo.name}  ({chatInfo.description})
-        <div className="btn-group pull-right">
-            <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-              <span className="glyphicon glyphicon-chevron-down"></span>
-            </button>
-            <ul className="dropdown-menu slidedown">
-              <li><a href="#"><span className="glyphicon glyphicon-refresh">
-              </span>Добавить контакты</a>
-              </li>
-              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-ok-sign">
-              //   </span>Available</a>
-              // </li>
-              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-remove">
-              //   </span>Busy</a>
-              // </li>
-              // <li><a href="http://www.jquery2dotnet.com"><span className="glyphicon glyphicon-time">
-              //   </span>Away</a>
-              // </li>
-              // <li className="divider"></li>
-              // <li>
-              //   <a href="http://www.jquery2dotnet.com">
-              //     <span className="glyphicon glyphicon-off"></span>
-              //     Sign Out
-              //   </a>
-              // </li>
-            </ul>
-          </div>
-        </div>
+        <h3 className="panel-title">Название чата: {chatInfo.description}</h3>
     );
   }
 }

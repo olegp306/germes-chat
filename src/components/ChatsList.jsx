@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from  '../api/api.js';
+import Chat from './Chat.jsx';
 
 class ChatsList extends Component {
   constructor(props) {
@@ -8,39 +9,61 @@ class ChatsList extends Component {
   }
 
   //при инициализации 1 раз
-   componentDidMount() {
-     this.setState({text:this.props.chats});
+  componentDidMount() {
+     this.setState({chats:this.props.chats, currentChatId:this.props.currentChatId});
    }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({text:this.props.chats});
+    this.setState({chats:nextProps.chats, currentChatId:nextProps.currentChatId});
   }
 
-  handOnChatClick=()=>{
-    console.log('handOnChatClick');
-    //this.props.addMessageFn(this.state.text);
-  };
-
-
   render() {
-    return (
-      <div className="dropdown">
-        <button classNameclassName="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Dropdown
-        <span className="caret"></span>
-        </button>
+    if(!this.state.chats)
+    {
+      return <p>ChatsList Loading....</p>
+    }
+    else {
+      //console.log(this.state.chats);
+      if(Object.keys(this.state.chats).length==0)
+      {
+         return <p>Нет ни одного сообщения. Напишите первым !</p>
+      }
+      //console.log(this.props.data);
+      //let currentUserId=this.state.currentUserId;
+      //let users=this.state.users;
+      let chats=this.state.chats;
+      let chatsListView= new Array;
 
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <input id="btn-input" type="text" className="form-control input-sm" placeholder="Введите сообщение здесь..." />
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" className="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
+      for (let prop in chats)
+      {
+        let chat=chats[prop];
+        let isCurrentChat=false;
+        if(chat.id==this.state.currentChatId){
+          isCurrentChat=true;
+        }
+
+        chatsListView.push (<Chat key={chat.id} chatInfo={chat} isCurrentChat={isCurrentChat} changeCurrentChatFn={this.props.changeCurrentChatFn} />);
+      }
+
+    return (
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">Чаты</h3>
+        </div>
+        <div className="panel-body">
+          <div className="input-group">
+             <input type="text" className="form-control" placeholder="Поиск чата" aria-label="Amount (to the nearest dollar)"/>
+             <span className="input-group-addon">Лупа</span>
+          </div>
+          <div className="sidebar">
+            <ul className="nav nav-sidebar">
+              {chatsListView}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
+  }
 }
-
 export default ChatsList;

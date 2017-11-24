@@ -17,13 +17,15 @@ class NewMessageBox extends Component {
   }
 
   handMessageAdd=()=>{
-    this.props.addMessageFn(this.state.text);
+    if(this.state.text.trim().length>0){
+      this.props.addMessageFn(this.state.text);
+    }
   };
 
   handIsEnterKey=(event)=>{
     if(event.keyCode==13){
       if(event.ctrlKey==false){
-        console.log('handIsEnterKey ',event.target.value);
+        //console.log('handIsEnterKey ',event.target.value);
         this.handMessageAdd();
       }
       else {

@@ -17,7 +17,7 @@ class MessagesList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    //console.log(nextProps);
     //this.state={text:nextProps.newMessageText};
     this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId}) ;
   }
@@ -27,10 +27,10 @@ class MessagesList extends Component {
   }
 
   scrollTolastMessage=()=>{
-      var objDiv = document.getElementsByClassName('panel-body');
-      if(objDiv.length!=0)
+      var objDiv = document.getElementById('messagesList');
+      if(objDiv)
       {
-        objDiv[0].scrollTop =objDiv[0].scrollHeight;
+        objDiv.scrollTop =objDiv.scrollHeight;
       }
     }
 
@@ -64,7 +64,7 @@ class MessagesList extends Component {
 
         return (
           <div>
-            <div className="panel-body">
+            <div id="messagesList" className="panel-body">
               <ul className="chat">
                 {messagesListView}
               </ul>
