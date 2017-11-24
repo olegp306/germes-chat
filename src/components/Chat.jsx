@@ -8,6 +8,8 @@ import Message from './Message.jsx';
 import MessagesList from './MessagesList.jsx';
 import NewMessageBox from './NewMessageBox.jsx';
 import ContactsList from './ContactsList.jsx';
+import ChatsList from './ChatsList.jsx';
+
 
 require('./Chat.css');
 
@@ -42,7 +44,7 @@ class Chat extends React.Component {
       //добавить новое сообщение
       api.getMessagesByChatId(this.props.chatId)
       .then((responce)=>{
-        this.setState({newMessageText:'', messages: api.toAssociativeArray(responce.data)})
+        this.setState({newMessageText:'',messages: api.toAssociativeArray(responce.data)})
       })
       //this.setState({newMessageText:''});
     },
@@ -71,10 +73,11 @@ class Chat extends React.Component {
     return (
       <div className="bootstrap">
         <div className="panel panel-primary">
+          d
+          <ChatsList chats={this.state.chats} />
           <BigChatDescription chatInfo={this.state.chats[this.state.currentChatId]}/>
           <MessagesList currentChatId={this.state.currentChatId} currentUserId={this.props.userId} messages={this.state.messages} users={this.state.users}/>
           <NewMessageBox addMessageFn={this.addMessagge} newMessageText={this.state.newMessageText}/>
-
         </div>
       </div>
     )

@@ -21,15 +21,20 @@ class NewMessageBox extends Component {
   };
 
   handIsEnterKey=(event)=>{
-    console.log('handIsEnterKey');
     if(event.keyCode==13){
-      console.log(event.keyCode);
-      this.handMessageAdd();
+      if(event.ctrlKey==false){
+        console.log('handIsEnterKey ',event.target.value);
+        this.handMessageAdd();
+      }
+      else {
+        let oldtext=this.state.text;
+        this.setState({text:oldtext+'\n'});
+      }
     }
   }
 
   handleTextChange=(event)=>{
-    console.log('handleTextChange');
+    console.log('handleTextChange ',event.target.value);
     this.setState({text:event.target.value});
   }
 
@@ -44,7 +49,7 @@ class NewMessageBox extends Component {
             className="form-control input-sm"
             value={this.state.text}
             onChange={this.handleTextChange}
-            onKeyDown={this.handIsEnterKey}
+            onKeyUp={this.handIsEnterKey}
           />
             <span className="input-group-btn">
               <button className="btn btn-warning btn-sm" id="btn-chat" onClick={this.handMessageAdd}  >

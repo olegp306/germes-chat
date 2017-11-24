@@ -12,12 +12,17 @@ console.log("Запуск GermesChat index.js");
 
 // Перед тем как Build для Клариса нужно закоментировать строчку ниже а в Кларисе ReactDOM.render(React.createElement(window.GermesChat), document.getElementById('germes-chat'))
 //Иначе компонент попытаеться разу где-то отрисоваться
-let testExternalParam={
-  'requestId':'2768005082000',
+
+export const  chatparams={
   'chatType':'',
+  'chatId':'2768074019000',
   'userId':'39098772000'
 };
+ReactDOM.render(
+  React.createElement(App, {chatparams:chatparams}, null),
+  document.getElementById('germes-chat')
+);
 
-ReactDOM.render(<App params={testExternalParam}/>, document.getElementById('germes-chat'));
+// ReactDOM.render(<App chatparams={chatparams:chatparams}/>, document.getElementById('germes-chat'));
 
 //registerServiceWorker();
