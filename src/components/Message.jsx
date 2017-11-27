@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-require('./Message.css');
-
 class Message extends Component {
   hashCode=function (str) { // java String#hashCode
       var hash = 0;
