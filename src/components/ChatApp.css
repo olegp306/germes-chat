@@ -73,3 +73,5 @@ background-color: #555;
   color: #fff;
   background-color: #428bca;
 }
+
+.w3-animate-fading{animation:fading 2s; animation-iteration-count:1}@keyframes fading{0%{opacity:0}50%{opacity:0.5}100%{opacity:1}}
