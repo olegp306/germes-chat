@@ -17,9 +17,13 @@ class MessagesList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    //console.log(nextProps);
-    //this.state={text:nextProps.newMessageText};
-    this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId}) ;
+    for (let prop in nextProps.messages)
+    {
+      if(!this.state.messages[prop]){
+        nextProps.messages[prop].isNewMessage=true;
+      }
+      this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId});
+    }
   }
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {

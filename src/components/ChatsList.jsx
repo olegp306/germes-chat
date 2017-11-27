@@ -21,7 +21,7 @@ class ChatsList extends Component {
    }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
+      this.setState({
       chats:nextProps.chats,
       currentChatId:nextProps.currentChatId,
       displayedChats:nextProps.chats });

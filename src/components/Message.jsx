@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+require('./Message.css');
+
 class Message extends Component {
   hashCode=function (str) { // java String#hashCode
       var hash = 0;
@@ -26,15 +28,18 @@ class Message extends Component {
       result=result +' ' + nameArr[i].substring(0,1);
     }
     return 'http://placehold.it/50/'+this.intToRGB(this.hashCode(result))+'/fff&text='+result;
-  };
+  }
 
   render() {
     let data=this.props.message;
     let isMyMessage=this.props.isMyMessage;
+    let isNewMessage=this.props.isNewMessage;
     let user=this.props.user;
 
     return (
-      <div className="Message">
+
+      <div className={data.isNewMessage==true ? "Message w3-animate-fading" : "Message"}>
+
         <li className={ isMyMessage==true ? "right clearfix" : "left clearfix"}>
           <span className={isMyMessage==true ? "chat-img pull-right" : "chat-img pull-left"}>
             <img src={this.getUserPhoto(user.name)} alt="User Avatar" className="img-circle" />
