@@ -80,24 +80,25 @@ class ChatsList extends Component {
           isCurrentChat=true;
         }
 
-        chatsListView.push (<SmallChat key={chat.id} chatInfo={chat} isCurrentChat={isCurrentChat} changeCurrentChatFn={this.props.changeCurrentChatFn} />);
+        chatsListView.push (<SmallChat key={chat.id} chatInfo={chat} isCurrentChat={isCurrentChat} changeCurrentChatFn={this.props.changeCurrentChatFn} updateDataFn={this.props.updateData} />);
       }
 
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-primary chats-panel">
         <div className="panel-heading">
-          <h3 className="panel-title">Чаты</h3>
+          <h3 className="panel-title">Чаты<button className="btn btn-primary refresh-btn" onClick={this.props.updateDataFn}><span className="glyphicon glyphicon-refresh"></span> </button></h3>
+
         </div>
-        <div className="panel-body">
-          <div className="input-group">
+        <div className="panel-body chat-list">
+          <div className="input-group search-input">
             <input type="text" className="form-control" placeholder="Поиск чата" onChange={this.handleSearch} value={this.state.searchQuery}/>
             <span className="input-group-btn">
-              <button className="btn btn-default" type="button" onClick={this.clearSearchQuery} ata-toggle="tooltip" data-placement="right" title="Очистить строку поиска" >X</button>
+              <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} ata-toggle="tooltip" data-placement="right" title="Очистить строку поиска" >X</button>
             </span>
           </div>
 
           <div className="sidebar">
-            <ul className="nav nav-sidebar">
+            <ul className="nav nav-sidebar chat-list">
               {chatsListView}
             </ul>
           </div>

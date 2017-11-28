@@ -1,3 +1,7 @@
+.row{
+      margin-right: -10px;
+      margin-left: -10px;
+}
 .chat
 {
 list-style: none;
@@ -36,9 +40,51 @@ margin-right: 5px;
 
 .panel-body
 {
-overflow-y: scroll;
+overflow-y: auto;
+overflow-x: hidden;
 height: 450px;
 }
+
+.chats-panel{
+ margin-bottom: 5px ;
+}
+
+.messages-panel{
+ margin-bottom: 5px ;
+}
+
+
+.panel-heading {
+    height: 55px;
+}
+
+
+.col-xs-3{
+ padding-right: 0px ;
+}
+ .col-xs-9{
+ padding-left: 5px ;
+}
+
+ .btn-send-messsage{
+    background-color: #f4aa42;
+ }
+  .refresh-btn{
+    float: right;
+  }
+
+  .search-input{
+      padding-bottom: 5px;
+  }
+
+  .chat-list{
+  background-color: #f5f5f5;
+}
+.resize-none{
+  resize:none
+}
+
+
 
 ::-webkit-scrollbar-track
 {
@@ -55,7 +101,7 @@ background-color: #F5F5F5;
 ::-webkit-scrollbar-thumb
 {
 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-background-color: #555;
+background-color: #337ab7;
 }
 /* Sidebar navigation */
 .nav-sidebar {

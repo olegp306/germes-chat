@@ -19,6 +19,7 @@ class NewMessageBox extends Component {
   handMessageAdd=()=>{
     if(this.state.text.trim().length>0){
       this.props.addMessageFn(this.state.text);
+      this.props.updateDataFn();
     }
   };
 
@@ -44,20 +45,15 @@ class NewMessageBox extends Component {
     return (
       <div className="panel-footer">
         <div className="input-group">
-          {/*<input id="btn-input" type="text" className="form-control input-sm" placeholder="Введите сообщение здесь..." />*/}
           <textarea
             placeholder="Введите сообщение здесь..."
             rows={4}
-            className="form-control input-sm"
+            className="form-control custom-control resize-none" rows="3"
             value={this.state.text}
             onChange={this.handleTextChange}
             onKeyUp={this.handIsEnterKey}
           />
-            <span className="input-group-btn">
-              <button className="btn btn-warning btn-sm" id="btn-chat" onClick={this.handMessageAdd}  >
-                Отправить
-              </button>
-            </span>
+        <span className="input-group-addon btn btn-warning btn-send-messsage " onClick={this.handMessageAdd}>Отправить </span>
           </div>
         </div>
     );

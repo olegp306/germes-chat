@@ -10,14 +10,15 @@ import NewMessageBox from './NewMessageBox.jsx';
 import ContactsList from './ContactsList.jsx';
 import ChatsList from './ChatsList.jsx';
 
-
 require('./ChatApp.css');
+
+const INITIAL_UPDATE_TIME=3000;
 
 class ChatApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.updateTime=1000;
+    this.updateTime=INITIAL_UPDATE_TIME;
 
     axios.all([api.getMessagesByChatId(this.props.chatId), api.getAllUsersByChatId(this.props.chatId),api.getAllChatsByUserId(this.props.userId)])
         .then(axios.spread((respMessages, respUsers, respChats) => {
@@ -43,14 +44,13 @@ class ChatApp extends React.Component {
 
   //let updateTime=1000;
   getNewData = () => {
-    axios.all([api.getMessagesByChatId(this.props.chatId), api.getAllUsersByChatId(this.props.chatId), api.getAllChatsByUserId(this.props.userId)])
+    axios.all([api.getMessagesByChatId(this.state.currentChatId), api.getAllUsersByChatId(this.state.currentChatId), api.getAllChatsByUserId(this.state.currentUserId)])
         .then(axios.spread((respMessages, respUsers, respChats) => {
             let hasNewMessage=(Object.keys(this.state.messages).length < respMessages.data.length);
             let hasNewUsers=(Object.keys(this.state.users).length < respUsers.data.length);
             let hasNewChats=(Object.keys(this.state.chats).length <respChats.data.length);
-            if (hasNewMessage || hasNewUsers || hasNewChats) {
-
-              this.updateTime=1000;
+            if (hasNewMessage || hasNewUsers || hasNewChats ) {
+              this.updateTime=INITIAL_UPDATE_TIME;
               this.setTimer();
                 this.setState({
                     messages: api.toAssociativeArray(respMessages.data),
@@ -58,12 +58,18 @@ class ChatApp extends React.Component {
                     chats: api.toAssociativeArray(respChats.data)
                 });
             } else {
-                if (this.updateTime < 300000) {
-                    this.updateTime = this.updateTime * 2;
-                    console.log("getNewData updateTime=",this.updateTime);
+                if (this.updateTime < 150000) {
+                    this.updateTime = this.updateTime * 1.2;
+                    console.log("Данные не Изменились getNewData updateTime=",this.updateTime);
                 }
             }
         }));
+  }
+
+  updateData=()=>{
+    this.updateTime=INITIAL_UPDATE_TIME;
+    this.getNewData();
+
   }
 
   componentDidMount() {
@@ -103,10 +109,10 @@ class ChatApp extends React.Component {
   }
 
   changeCurrentChat=(newChatId)=>{
-    console.log('changeCurrentChat ',newChatId);
     if(newChatId){
+      this.setState({currentChatId:newChatId});
       api.getMessagesByChatId(newChatId).then((response)=>{
-        this.setState({currentChatId:newChatId,messages:api.toAssociativeArray(response.data)})
+        this.setState({messages:api.toAssociativeArray(response.data),currentChatId:newChatId},this.updateData)
       })
       //this.setState({currentChatId:newChatId})
     }
@@ -122,27 +128,24 @@ class ChatApp extends React.Component {
     {
       return <p>MessagesList Loading....</p>
     }
-    var colStyle={paddingRight: '5px',
-                  paddingLeft: '5px'};
+    var colStyle={paddingRight: '5px', paddingLeft: '5px', paddingTop:'5px',paddingBottom:'5px'};
     return (
       <div className="bootstrap">
         <div className="row">
-          <div className="col-xs-3" style={colStyle}>
-              <ChatsList chats={this.state.chats} currentChatId={this.state.currentChatId}  changeCurrentChatFn={this.changeCurrentChat}/>
+          <div className="col-xs-3">
+              <ChatsList chats={this.state.chats} currentChatId={this.state.currentChatId}  changeCurrentChatFn={this.changeCurrentChat} updateDataFn={this.updateData}/>
           </div>
-          <div className="col-xs-9" style={colStyle}>
-            <div className="panel panel-default">
+          <div className="col-xs-9" >
+            <div className="panel panel-primary messages-panel">
               <div className="panel-heading">
-                <BigChatDescription chatInfo={this.state.chats[this.state.currentChatId]}/>
+                <BigChatDescription chatInfo={this.state.chats[this.state.currentChatId]} updateDataFn={this.updateData}/>
               </div>
-              <div className="panel-body" >
-                <MessagesList currentChatId={this.state.currentChatId} currentUserId={this.props.userId} messages={this.state.messages} users={this.state.users}/>
-              </div>
+              <MessagesList currentChatId={this.state.currentChatId} currentUserId={this.props.userId} messages={this.state.messages} users={this.state.users} updateDataFn={this.updateData}/>
             </div>
 
 
           </div>
-          <NewMessageBox addMessageFn={this.addMessagge} newMessageText={this.state.newMessageText}/>
+          <NewMessageBox addMessageFn={this.addMessagge} newMessageText={this.state.newMessageText} updateDataFn={this.updateData}/>
       </div>
     </div>
     )

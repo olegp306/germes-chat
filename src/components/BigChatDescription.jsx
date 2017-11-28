@@ -25,7 +25,8 @@ class BigChatDescription extends Component {
     //console.log(this.props.data);
     let chatInfo=this.state.chatInfo;
     return (
-        <h3 className="panel-title">Название чата: {chatInfo.description}</h3>
+        <h3 className="panel-title text-left">
+          {chatInfo.description} </h3>
     );
   }
 }

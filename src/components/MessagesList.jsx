@@ -22,8 +22,8 @@ class MessagesList extends Component {
       if(!this.state.messages[prop]){
         nextProps.messages[prop].isNewMessage=true;
       }
-      this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId});
     }
+    this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId});
   }
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {
@@ -67,14 +67,14 @@ class MessagesList extends Component {
         }
 
         return (
-          <div>
+
             <div id="messagesList" className="panel-body">
               <ul className="chat">
                 {messagesListView}
               </ul>
             </div>
 
-          </div>
+          
 
         );
       }
