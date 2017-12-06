@@ -30,7 +30,6 @@ export function checkStatus(response) {
   throw error;
 }
 
-
 export function authenticateByUserId (userId){
   return axios.post('/authbyappkey/token', {
     userid: userId,
@@ -39,23 +38,41 @@ export function authenticateByUserId (userId){
 }
 
 export function getChatInfoByChatId (chatId){
-  return  axios.get('/chats/'+chatId).then(checkStatus);
+  return  axios.get('/chat/'+chatId).then(checkStatus);
 }
 
-export function getAllChatsByUserId (userId) {
-  return axios.get('/chats/user/'+this.userId).then(checkStatus);
+// export function getAllChatsByUserId (userId) {
+//   return axios.get('/chats/user/'+this.userId).then(checkStatus);
+// }
+
+export function getUserChats () {
+  return axios.get('/userchat').then(checkStatus);
 }
+
+export function getUserChatsInfos (userId) {
+  return axios.get('/chat/chatsinfos/'+userId).then(checkStatus);
+}
+
+
+export function addUsersInChats (users) {
+  return axios.post('/userchat',users).then(checkStatus);
+}
+
 
 export function getUsersByChatId(chatId) {
-  return axios.get('/users/chatid/'+this.chatId).then(checkStatus);
+  return axios.get('/user/usersinfos/'+chatId).then(checkStatus);
 }
 
-export function getAllUsersByChatId (chatId) {
-  return axios.get('/users/chatid/'+chatId).then(checkStatus);
-}
+ export function getUsersAvailableToAdd(chatId) {
+   return axios.get('/user/availabletoadd/'+chatId).then(checkStatus);
+ }
 
 export function getMessagesByChatId (chatId) {
   return axios.get('/messages/chatid/'+ chatId).then(checkStatus);
+}
+
+export function addUsersInChat (users) {
+  return axios.post('/userchat/', users).then(checkStatus);
 }
 
 export function addMessage (message) {
