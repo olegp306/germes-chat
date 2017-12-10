@@ -12,10 +12,15 @@ console.log("Запуск GermesChat index.js");
 // Перед тем как Build для Клариса нужно закоментировать строчку ниже а в Кларисе ReactDOM.render(React.createElement(window.GermesChat), document.getElementById('germes-chat'))
 //Иначе компонент попытаеться разу где-то отрисоваться
 
+
+// 2375300449000 Веребейчик Вадим Алексеевич
+//	2767852694000 ПСН API
+// 39098772000  Быконя
+
 export const  chatparams={
   'chatType':'',
-  'chatId':'2768074019000',
-  'userId':'39098772000'
+  'chatId':'2768027587000',
+  'userId':'2375300449000'
 };
 
 
