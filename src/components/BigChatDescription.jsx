@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import UsersListWithCheck from './UsersListWithCheck.jsx';
+import UsersList from './UsersList.jsx';
 
 //import {testExternalParam} from  '../index.js';
 
@@ -6,14 +8,23 @@ class BigChatDescription extends Component {
   constructor(props) {
     super(props);
 
-    this.state={};
+    //this.state={};
+    this.state={
+      chatInfo:this.props.chatInfo,
+      availableToAddUsers:this.props.availableToAddUsers,
+      chatUsers:this.props.chatUsers
+    } ;
   }
 
   componentDidMount() {
-      this.setState({chatInfo:this.props.chatInfo}) ;
   }
+
   componentWillReceiveProps(nextProps) {
-      this.setState({chatInfo:nextProps.chatInfo}) ;
+      this.setState({
+        chatInfo:nextProps.chatInfo,
+        availableToAddUsers:nextProps.availableToAddUsers,
+        chatUsers:nextProps.chatUsers
+      });
   }
 
   render() {
@@ -22,11 +33,43 @@ class BigChatDescription extends Component {
     {
       return <p>BigChatDescription Loading....</p>
     }
+
+
     //console.log(this.props.data);
     let chatInfo=this.state.chatInfo;
+    let chatUsers=this.state.chatUsers;
+    let chatUsersCount=Object.keys(chatUsers).length;
     return (
+      <div>
         <h3 className="panel-title text-left">
-          {chatInfo.description} </h3>
+          {chatInfo.description}(кол-во человек в чате)
+        </h3>
+
+        <div className="btn-group pull-right">
+          <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+              <span className="glyphicon glyphicon-plus" title="Добавить новых участников в чат">Добавить</span>
+          </button>
+          <div className="dropdown-menu slidedown">
+            <UsersListWithCheck
+              chatUsers={this.props.users}
+              availableToAddUsers={this.props.availableToAddUsers}
+              currentUserId={this.props.currentUserId}
+              addUsersFn={this.props.addUsersFn} />
+          </div>
+        </div>
+
+        <div className="btn-group pull-left">
+          <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+              <span className="glyphicon glyphicon-user"> {chatUsersCount}</span>
+          </button>
+          <div className="dropdown-menu slidedown">
+            <UsersList
+               chatUsers={this.props.chatUsers}
+               currentUserId={this.props.currentUserId} />
+          </div>
+        </div>
+
+      </div>
     );
   }
 }
