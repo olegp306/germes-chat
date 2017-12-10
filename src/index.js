@@ -17,17 +17,17 @@ console.log("Запуск GermesChat index.js");
 //	2767852694000 ПСН API
 // 39098772000  Быконя
 
-export const  chatparams={
-  'chatType':'',
-  'chatId':'2768027587000',
-  'userId':'2375300449000'
-};
-
-
-ReactDOM.render(
-  React.createElement(App, {chatparams:chatparams}, null),
-  document.getElementById('germes-chat')
-);
+// export const  chatparams={
+//   'chatType':'',
+//   'chatId':'2768027587000',
+//   'userId':'2375300449000'
+// };
+//
+//
+// ReactDOM.render(
+//   React.createElement(App, {chatparams:chatparams}, null),
+//   document.getElementById('germes-chat')
+// );
 
 // ReactDOM.render(<App chatparams={chatparams:chatparams}/>, document.getElementById('germes-chat'));
 
