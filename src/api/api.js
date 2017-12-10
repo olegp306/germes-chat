@@ -6,11 +6,15 @@ function parseJSON(response) {
   return response.json();
 }
 
-export function toAssociativeArray (data){
+export function toAssociativeArray (data,idFieldName){
+  if(!idFieldName){
+    var  idFieldName="id";
+  }
   let map = {};
   //console.log('toAssociativeArr', data);
   for (var i = 0, l = data.length; i < l; i++) {
-      map[data[i].id] = data[i];
+    let item=data[i];
+      map[item[idFieldName]] = item;
   }
   //console.log(map);
   return map;
@@ -77,4 +81,12 @@ export function addUsersInChat (users) {
 
 export function addMessage (message) {
   return axios.post('/messages/', message).then(checkStatus);
+}
+
+export function getUnreadMessage (userId) {
+  return axios.get('/mesreadinfo/userId/'+ userId).then(checkStatus);
+}
+
+export function updateMessagesReadStatus (readMessages) {
+  return axios.put('/mesreadinfo',readMessages).then(checkStatus);
 }
