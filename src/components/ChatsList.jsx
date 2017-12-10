@@ -11,6 +11,7 @@ class ChatsList extends Component {
       chats:this.props.chats,
       displayedChats:this.props.chats,
       currentChatId:this.props.currentChatId,
+      unreadMessages:this.props.unreadMessages,
       searchQuery:''
     };
   }
@@ -24,7 +25,9 @@ class ChatsList extends Component {
       this.setState({
       chats:nextProps.chats,
       currentChatId:nextProps.currentChatId,
-      displayedChats:nextProps.chats });
+      displayedChats:nextProps.chats,
+      unreadMessages:nextProps.unreadMessages
+     });
 
     //filterChats(this.state.searchQuery);
   }
@@ -43,13 +46,13 @@ class ChatsList extends Component {
     let newDisplayedChats={};
 
     if(searchQuery==''){
-      return this.state.chats;
+      return this.state.users;
     }
     else{
-      for (let prop in this.state.chats){
-        let chat=this.state.chats[prop];
-          if(chat.name.indexOf(searchQuery)!==(-1)){
-            newDisplayedChats[prop]=this.state.chats[prop];
+      for (let prop in this.state.users){
+        let chat=this.state.users[prop];
+          if(chat.name.toLowerCase().indexOf(searchQuery.toLowerCase())!==(-1)){
+            newDisplayedChats[prop]=this.state.users[prop];
           }
       }
       return newDisplayedChats;
@@ -59,6 +62,18 @@ class ChatsList extends Component {
   clearSearchQuery=()=>{
 
     this.setState({searchQuery:'',displayedChats:this.props.chats});
+  }
+
+  getUnreadMessagesCount=(messagesReadInfo,chatId)=>{
+    let unReadMessagesCount=0;
+    for(let prop in messagesReadInfo)
+    {
+      if(messagesReadInfo[prop].chatId==chatId){
+        unReadMessagesCount++;
+      }
+    }
+    return unReadMessagesCount;
+
   }
 
 
@@ -80,12 +95,18 @@ class ChatsList extends Component {
           isCurrentChat=true;
         }
 
-        chatsListView.push (<SmallChat key={chat.id} chatInfo={chat} isCurrentChat={isCurrentChat} changeCurrentChatFn={this.props.changeCurrentChatFn} updateDataFn={this.props.updateData} />);
+        let unreadMessagesCount= this.getUnreadMessagesCount(this.state.unreadMessages,chat.id);
+        chatsListView.push (<SmallChat key={chat.id}
+          chatInfo={chat}
+          isCurrentChat={isCurrentChat}
+          unreadMessagesCount={unreadMessagesCount}
+          changeCurrentChatFn={this.props.changeCurrentChatFn}
+          updateDataFn={this.props.updateData} />);
       }
 
     return (
       <div className="panel panel-primary chats-panel">
-        <div className="panel-heading">
+        <div className="panel-heading chat-panel-heading">
           <h3 className="panel-title">Чаты<button className="btn btn-primary refresh-btn" onClick={this.props.updateDataFn}><span className="glyphicon glyphicon-refresh"></span> </button></h3>
 
         </div>
@@ -93,7 +114,7 @@ class ChatsList extends Component {
           <div className="input-group search-input">
             <input type="text" className="form-control" placeholder="Поиск чата" onChange={this.handleSearch} value={this.state.searchQuery}/>
             <span className="input-group-btn">
-              <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} ata-toggle="tooltip" data-placement="right" title="Очистить строку поиска" >X</button>
+              <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} data-toggle="tooltip" data-placement="right" title="Очистить строку поиска" ><span className="glyphicon glyphicon-search"></span></button>
             </span>
           </div>
 
