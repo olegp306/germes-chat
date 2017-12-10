@@ -5,14 +5,22 @@ class SmallChat extends Component {
     super(props);
 
     this.state={};
+      this.state={chatInfo:this.props.chatInfo,
+        isCurrentChat: this.props.isCurrentChat,
+        changeCurrentChatFn:this.props.changeCurrentChatFn,
+        unreadMessagesCount:this.props.unreadMessagesCount
+       } ;
   }
 
   componentDidMount() {
-      this.setState({chatInfo:this.props.chatInfo,isCurrentChat: this.props.isCurrentChat, changeCurrentChatFn:this.props.changeCurrentChatFn }) ;
+
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({chatInfo:nextProps.chatInfo,isCurrentChat: nextProps.isCurrentChat, changeCurrentChatFn:nextProps.changeCurrentChatFn });
+    this.setState({chatInfo:nextProps.chatInfo,
+      isCurrentChat: nextProps.isCurrentChat,
+      changeCurrentChatFn:nextProps.changeCurrentChatFn,
+      unreadMessagesCount:nextProps.unreadMessagesCount });
   }
 
   handOnChatClick=(e)=>{
@@ -28,7 +36,7 @@ class SmallChat extends Component {
     else{
         return (
             <li className={ this.state.isCurrentChat==true ? "active" : ""} id={this.state.chatInfo.id}>
-              <a  id={this.state.chatInfo.id} href="#" onClick={this.handOnChatClick}>{this.state.chatInfo.name} </a>
+              <a  id={this.state.chatInfo.id} href="#" onClick={this.handOnChatClick}>{this.state.chatInfo.name} ({this.state.unreadMessagesCount})</a>
             </li>
         );
     }
