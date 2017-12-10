@@ -4,7 +4,6 @@ class SmallChat extends Component {
   constructor(props) {
     super(props);
 
-    this.state={};
       this.state={chatInfo:this.props.chatInfo,
         isCurrentChat: this.props.isCurrentChat,
         changeCurrentChatFn:this.props.changeCurrentChatFn,
