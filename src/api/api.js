@@ -42,7 +42,11 @@ export function authenticateByUserId (userId){
 }
 
 export function getChatInfoByChatId (chatId){
-  return  axios.get('/chat/'+chatId).then(checkStatus);
+  return  axios.get('/chats/chat/'+chatId).then(checkStatus);
+}
+
+export function getUserChatsInfos (userId) {
+  return axios.get('/chats/chatsinfos/'+userId).then(checkStatus);
 }
 
 // export function getAllChatsByUserId (userId) {
@@ -53,22 +57,16 @@ export function getUserChats () {
   return axios.get('/userchat').then(checkStatus);
 }
 
-export function getUserChatsInfos (userId) {
-  return axios.get('/chat/chatsinfos/'+userId).then(checkStatus);
-}
-
-
 export function addUsersInChats (users) {
   return axios.post('/userchat',users).then(checkStatus);
 }
 
-
 export function getUsersByChatId(chatId) {
-  return axios.get('/user/usersinfos/'+chatId).then(checkStatus);
+  return axios.get('/users/usersinfos/'+chatId).then(checkStatus);
 }
 
  export function getUsersAvailableToAdd(chatId) {
-   return axios.get('/user/availabletoadd/'+chatId).then(checkStatus);
+   return axios.get('/users/availabletoadd/'+chatId).then(checkStatus);
  }
 
 export function getMessagesByChatId (chatId) {
