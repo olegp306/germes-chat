@@ -7,23 +7,31 @@ import * as api from  '../api/api.js';
 class MessagesList extends Component {
   constructor(props) {
     super(props);
-    this.state={};
+    this.state={
+      users:this.props.users,
+      messages:this.props.messages,
+      currentUserId:this.props.currentUserId,
+      unreadMessages:this.props.unreadMessages,
+      messagesWasReadFn:this.props.messagesWasReadFn};
   }
 
  //при инициализации 1 раз
   componentDidMount() {
-    this.setState({users:this.props.users,messages:this.props.messages, currentUserId:this.props.currentUserId}) ;
-    //this.scrollTolastMessage();
+      this.scrollTolastMessage();
   }
 
   componentWillReceiveProps(nextProps) {
-    for (let prop in nextProps.messages)
-    {
-      if(!this.state.messages[prop]){
-        nextProps.messages[prop].isNewMessage=true;
-      }
+    if(!this.readNewMessagesTimerId){
+      clearTimeout (this.timerId);
     }
-    this.setState({users:nextProps.users,messages:nextProps.messages, currentUserId:nextProps.currentUserId});
+
+    this.setState({
+      users:nextProps.users,
+      messages:nextProps.messages,
+      currentUserId:nextProps.currentUserId,
+      unreadMessages:nextProps.unreadMessages,
+      messagesWasReadFn:nextProps.messagesWasReadFn
+    });
   }
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {
@@ -47,7 +55,12 @@ class MessagesList extends Component {
       else {
         if(Object.keys(this.state.messages).length==0)
         {
-           return <p>Нет ни одного сообщения. Напишите первым !</p>
+           return (
+             <div id="messagesList" className="panel-body">
+               <ul className="chat">
+                 <p>Нет ни одного сообщения. Напишите первым !</p>
+               </ul>
+             </div>);
         }
         //console.log(this.props.data);
         let currentUserId=this.state.currentUserId;
@@ -59,26 +72,31 @@ class MessagesList extends Component {
         {
           let message=messages[prop];
 
-          let isMyMessage=false;
-          if(message.userId==currentUserId){
-            isMyMessage=true;
-          }
-          messagesListView.push (<Message key = {message.id} message={message} user={users[message.userId]} isMyMessage={isMyMessage}/>);
+          let isNewMessage=(this.state.unreadMessages[message.id] ? true : false);
+          let isMyMessage=(message.userId==this.state.currentUserId ? true: false);
+
+          messagesListView.push (
+            <Message
+              key = {message.id}
+              messageInfo={message}
+              userInfo={users[message.userId]}
+              isMyMessage={isMyMessage}
+              isNewMessage={isNewMessage}
+              />);
         }
 
-        return (
+        this.readNewMessagesTimerId = setTimeout(()=>{this.state.messagesWasReadFn(this.state.unreadMessages)}, 4000);
 
+        return (
             <div id="messagesList" className="panel-body">
               <ul className="chat">
                 {messagesListView}
               </ul>
             </div>
-
-          
-
         );
       }
-  }
+    }
+
 }
 
 export default MessagesList;
