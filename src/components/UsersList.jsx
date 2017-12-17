@@ -33,9 +33,9 @@ class UsersList extends Component {
       let users=this.state.chatUsers;
       var usersListView= new Array;
 
-      for (let prop in users){        
+      for (let prop in users){
         let user=users[prop];
-        usersListView.push (<li className="xs-user-li"><XsUser key={user.id}  user={user} /></li>);
+        usersListView.push (<li  key={user.id} className="xs-user-li"><XsUser key={user.id}  user={user} /></li>);
       }
     }
 
