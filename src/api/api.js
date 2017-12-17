@@ -41,30 +41,21 @@ export function authenticateByUserId (userId){
     })
 }
 
-export function getChatInfoByChatId (chatId){
+export function getChatByChatId (chatId){
   return  axios.get('/chats/chat/'+chatId).then(checkStatus);
 }
-
-export function getUserChatsInfos (userId) {
-  return axios.get('/chats/chatsinfos/'+userId).then(checkStatus);
+export function getUserChats (userId) {
+  return axios.get('/chats/user/'+userId).then(checkStatus);
 }
 
-// export function getAllChatsByUserId (userId) {
-//   return axios.get('/chats/user/'+this.userId).then(checkStatus);
-// }
-
-export function getUserChats () {
-  return axios.get('/userchat').then(checkStatus);
+export function addUsersToChat (users) {
+  return axios.post('/userschats',users).then(checkStatus);
 }
 
-export function addUsersInChats (users) {
-  return axios.post('/userchat',users).then(checkStatus);
-}
 
 export function getUsersByChatId(chatId) {
-  return axios.get('/users/usersinfos/'+chatId).then(checkStatus);
+  return axios.get('/users/chatId/'+chatId).then(checkStatus);
 }
-
  export function getUsersAvailableToAdd(chatId) {
    return axios.get('/users/availabletoadd/'+chatId).then(checkStatus);
  }
@@ -72,19 +63,14 @@ export function getUsersByChatId(chatId) {
 export function getMessagesByChatId (chatId) {
   return axios.get('/messages/chatid/'+ chatId).then(checkStatus);
 }
-
-export function addUsersInChat (users) {
-  return axios.post('/userchat/', users).then(checkStatus);
-}
-
 export function addMessage (message) {
   return axios.post('/messages/', message).then(checkStatus);
 }
 
 export function getUnreadMessage (userId) {
-  return axios.get('/mesreadinfo/userId/'+ userId).then(checkStatus);
+  return axios.get('/messsagesreadstatuses/userId/'+ userId).then(checkStatus);
 }
 
 export function updateMessagesReadStatus (readMessages) {
-  return axios.put('/mesreadinfo',readMessages).then(checkStatus);
+  return axios.put('/messsagesreadstatuses',readMessages).then(checkStatus);
 }
