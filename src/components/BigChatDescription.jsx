@@ -27,6 +27,12 @@ class BigChatDescription extends Component {
       });
   }
 
+  handleChildClick=(e)=> {
+   e.stopPropagation();
+
+   console.log('handleChildClick',e);
+ }
+
   render() {
 
     if(this.state.chatInfo==null || !this.state.chatInfo )
@@ -41,15 +47,16 @@ class BigChatDescription extends Component {
     let chatUsersCount=Object.keys(chatUsers).length;
     return (
       <div>
-        <h3 className="panel-title text-left">
-          {chatInfo.description}(кол-во человек в чате)
+        <h3 className="panel-title text-center in-one-row">
+          {chatInfo.description}
+          {/*Всего: кол-во человек в чате)*/}
         </h3>
 
         <div className="btn-group pull-right">
           <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
               <span className="glyphicon glyphicon-plus" title="Добавить новых участников в чат">Добавить</span>
           </button>
-          <div className="dropdown-menu slidedown">
+          <div className="dropdown-menu slidedown user-dropdown-menu" onClick={this.handleChildClick}>
             <UsersListWithCheck
               chatUsers={this.props.users}
               availableToAddUsers={this.props.availableToAddUsers}
@@ -62,7 +69,7 @@ class BigChatDescription extends Component {
           <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
               <span className="glyphicon glyphicon-user"> {chatUsersCount}</span>
           </button>
-          <div className="dropdown-menu slidedown">
+          <div className="dropdown-menu slidedown user-dropdown-menu" >
             <UsersList
                chatUsers={this.props.chatUsers}
                currentUserId={this.props.currentUserId} />
