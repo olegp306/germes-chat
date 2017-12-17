@@ -43,6 +43,7 @@ margin-right: 5px;
 overflow-y: auto;
 overflow-x: hidden;
 height: 450px;
+
 }
 
 .chats-panel{
@@ -79,9 +80,15 @@ height: 450px;
       margin-right: -10px !important;
   }
 
-    .chat-list{
+.chat-list{
   background-color: #f5f5f5;
 }
+
+ul.chat-list{
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
 .resize-none{
   resize:none
 }
@@ -126,17 +133,36 @@ background-color: #337ab7;
 .new-message .glyphicon-time {
   color:red;
   animation:fading 5s;
-  animation-iteration-count:1}@keyframes fading{0%{color:white}50%{color:orangered}100%{color:red}}
-
-.dropdown-menu {
-  min-width:350px
+  animation-iteration-count:1}@keyframes fading{0%{color:white}50%{color:orangered}100%{color:red}
 }
-.input-group-addon{
-background-color: #f5f5f5;
-border: none;
+
+.user-dropdown-menu {
+  min-width:350px !important;
+  padding: 0px 0 !important;
+}
+
+.user-checkbox{
+background-color: #f5f5f5 !important;
+border: none !important;
 }
 
 .xs-user-li{
   min-height: 27px;
   margin-left: 30px;
+}
+
+.unread-message-count {
+    float: right;
+    font-weight: bold;
+    color: darkred;
+    font-size: medium;
+    animation:fading 5s;
+    animation-iteration-count:1}@keyframes fading{0%{color:white}50%{color:orangered}100%{color:darkred}
+}
+.hidden{
+  display:none;
+}
+
+.in-one-row{
+  white-space: nowrap;
 }
