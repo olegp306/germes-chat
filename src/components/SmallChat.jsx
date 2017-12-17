@@ -35,7 +35,9 @@ class SmallChat extends Component {
     else{
         return (
             <li className={ this.state.isCurrentChat==true ? "active" : ""} id={this.state.chatInfo.id}>
-              <a  id={this.state.chatInfo.id} href="#" onClick={this.handOnChatClick}>{this.state.chatInfo.name} ({this.state.unreadMessagesCount})</a>
+              <a  id={this.state.chatInfo.id} href="#" onClick={this.handOnChatClick}>{this.state.chatInfo.name}
+                <span className= {this.state.unreadMessagesCount==0 ? "hidden":"unread-message-count"}> {this.state.unreadMessagesCount}</span>
+                </a>
             </li>
         );
     }
