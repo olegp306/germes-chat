@@ -46,13 +46,13 @@ class ChatsList extends Component {
     let newDisplayedChats={};
 
     if(searchQuery==''){
-      return this.state.users;
+      return this.state.chats;
     }
     else{
-      for (let prop in this.state.users){
-        let chat=this.state.users[prop];
+      for (let prop in this.state.chats){
+        let chat=this.state.chats[prop];
           if(chat.name.toLowerCase().indexOf(searchQuery.toLowerCase())!==(-1)){
-            newDisplayedChats[prop]=this.state.users[prop];
+            newDisplayedChats[prop]=this.state.chats[prop];
           }
       }
       return newDisplayedChats;
@@ -113,9 +113,11 @@ class ChatsList extends Component {
         <div className="panel-body chat-list">
           <div className="input-group search-input">
             <input type="text" className="form-control" placeholder="Поиск чата" onChange={this.handleSearch} value={this.state.searchQuery}/>
-            <span className="input-group-btn">
-              <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} data-toggle="tooltip" data-placement="right" title="Очистить строку поиска" ><span className="glyphicon glyphicon-search"></span></button>
-            </span>
+            {/*<span className="input-group-btn">
+              <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} data-toggle="tooltip" data-placement="right" title="Очистить строку поиска" >
+                <span className="glyphicon glyphicon-search"></span>
+                </button>
+            </span>*/}
           </div>
 
           <div className="sidebar">
