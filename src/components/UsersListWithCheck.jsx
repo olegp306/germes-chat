@@ -45,7 +45,6 @@ class UsersListWithCheck extends Component {
     let newDisplayedUsers={};
     let availableToAddUsers=this.state.availableToAddUsers;
 
-
     if(searchQuery==''){
       return availableToAddUsers;
     }
@@ -138,9 +137,9 @@ class UsersListWithCheck extends Component {
         <div className="panel-body chat-list">
           <div className="input-group search-input">
             <input type="text" className="form-control" placeholder="Введите имя" onChange={this.handleSearch} value={this.state.searchQuery}/>
-            <span className="input-group-btn">
+            {/*<span className="input-group-btn">
               <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} data-toggle="tooltip" data-placement="right" title="Очистить строку поиска" ><span className="glyphicon glyphicon-search"></span></button>
-            </span>
+            </span>*/}
           </div>
 
           <div className="sidebar">
