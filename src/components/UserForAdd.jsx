@@ -21,7 +21,7 @@ class UserForAdd extends Component {
         return (
             <li className={ this.state.isCurrentUser==true ? "active" : ""} key={this.state.user.id}>
               <div className="input-group">
-                <span className="input-group-addon">
+                <span className="input-group-addon user-checkbox">
                   <input key={this.state.user.id} type="checkbox" checked={this.state.user.checked ? 'checked':''} onChange={this.props.checkUserFn.bind(this,this.state.user.id)}/>
                 </span>
                 <XsUser user={this.state.user}/>
