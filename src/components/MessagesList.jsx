@@ -74,7 +74,7 @@ class MessagesList extends Component {
 
           let isNewMessage=(this.state.unreadMessages[message.id] ? true : false);
           let isMyMessage=(message.userId==this.state.currentUserId ? true: false);
-
+        
           messagesListView.push (
             <Message
               key = {message.id}
@@ -85,7 +85,7 @@ class MessagesList extends Component {
               />);
         }
 
-        this.readNewMessagesTimerId = setTimeout(()=>{this.state.messagesWasReadFn(this.state.unreadMessages)}, 4000);
+        this.readNewMessagesTimerId = setTimeout(()=>{this.state.messagesWasReadFn(this.state.unreadMessages)}, 5000);
 
         return (
             <div id="messagesList" className="panel-body">
